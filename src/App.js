@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import './App.css';
 import BootstrapTest from './BootstrapTest';
 import Ref from './ref';
+import Portal from './Portal';
 
 const EmpItem = styled.div`
   padding: 20px;
@@ -206,6 +207,7 @@ function App() {
       <Btn />
 
       <Ref />
+      <Portal />
     </Wrapper>
   );
 }
