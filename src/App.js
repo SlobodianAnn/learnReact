@@ -2,6 +2,7 @@ import React, { Component, StrictMode } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import BootstrapTest from './BootstrapTest';
+import Ref from './ref';
 
 const EmpItem = styled.div`
   padding: 20px;
@@ -203,6 +204,8 @@ function App() {
       </StrictMode>
       <Field />
       <Btn />
+
+      <Ref />
     </Wrapper>
   );
 }
