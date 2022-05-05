@@ -5,6 +5,7 @@ import BootstrapTest from './BootstrapTest';
 import Ref from './ref';
 import Portal from './Portal';
 import HookSlider from './Hooks';
+import RefFunc from './refFunc';
 
 const EmpItem = styled.div`
   padding: 20px;
@@ -183,6 +184,8 @@ function App() {
     <Wrapper>
       <StrictMode>
         <Header />
+        <h2>Slider func</h2>
+        <RefFunc />
         <HookSlider />
         <Counter render={(counter) => <Message counter={counter} />} />
 
