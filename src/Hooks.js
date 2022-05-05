@@ -1,4 +1,4 @@
-import { Component, useState, useEffect } from 'react';
+import { Component, useState, useEffect, useCallback } from 'react';
 import { Container } from 'react-bootstrap';
 import './App.css';
 
@@ -79,6 +79,17 @@ const Slider = (props) => {
   const [slide, setSlide] = useState(calcValue);
   const [autoplay, setAutoPlay] = useState(false);
 
+  //сработает только если будет в дочернем компоненте
+  //запоминает функкию и не вызывает ее каждый раз при рендере или апдейте
+  const getSomeImages = useCallback(() => {
+    console.log('fetching');
+
+    return [
+      'https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
+      'https://img.freepik.com/free-photo/the-odenwald-in-germany-is-pure-nature_181624-32381.jpg?w=2000',
+    ];
+  }, []);
+
   function loggin() {
     console.log('log');
   }
@@ -126,11 +137,14 @@ const Slider = (props) => {
   return (
     <Container>
       <div className="slider w-50 m-auto">
-        <img
-          className="d-block w-100"
-          src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
-          alt="slide"
-        />
+        {/* {getSomeImages().map((url, i) => {
+          return (
+            <img className="d-block w-100" src={url} key={i} alt="slide" />
+          );
+        })} */}
+
+        <Slide getSomeImages={getSomeImages} />
+
         <div className="text-center mt-5">
           Active slide {slide} <br />
           {autoplay ? 'auto' : null}
@@ -154,6 +168,22 @@ const Slider = (props) => {
         </div>
       </div>
     </Container>
+  );
+};
+
+const Slide = ({ getSomeImages }) => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    setImages(getSomeImages());
+  }, [getSomeImages]);
+
+  return (
+    <>
+      {images.map((url, i) => (
+        <img className="d-block w-100" src={url} key={i} alt="slide" />
+      ))}
+    </>
   );
 };
 

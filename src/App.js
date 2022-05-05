@@ -178,6 +178,7 @@ class Counter extends Component {
 }
 
 function App() {
+  console.log('app');
   return (
     <Wrapper>
       <StrictMode>
